@@ -14,6 +14,10 @@ describe Register do
 	it "a register can change the amount of bills it contains" do
 		register.payRegister([20])
 		expect{register.payCustomer([20])}.to change{register.twenties.length}.by(-1)
-		p register.twenties
+	end
+
+	it "will not give bills unless there is that bill present in register" do
+		register.payRegister([20, 10, 5])
+		expect{register.payCustomer([2])}.to raise_error(ArgumentError)
 	end
 end

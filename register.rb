@@ -36,10 +36,22 @@ class Register
 	def payCustomer(arrayOfBills)
 		arrayOfBills.each do |bill|
 			if bill == 20 && twenties?
-				p self.twenties
 				self.twenties.delete_at(0) 
-				p self.twenties
 				self.total -= 20
+			elsif bill == 10 && tens?
+				self.tens.delete_at(0)
+				self.total -= 20
+			elsif bill == 5 && fives?
+				self.tens.delete_at(0)
+				self.total -= 20
+			elsif bill == 2 && twos?
+				self.tens.delete_at(0)
+				self.total -= 20
+			elsif bill == 1 && ones?
+				self.tens.delete_at(0)
+				self.total -= 20
+			else
+				raise ArgumentError, 'sorry do not currently have #{bill}\'s in the cash register'
 			end
 		end 
 	end
